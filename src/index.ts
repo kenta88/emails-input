@@ -1,4 +1,4 @@
-require('./index.scss');
-const EmailsInput = require('./EmailsInput');
+require("./index.scss");
+const EmailsInput = require("./EmailsInput");
 
 module.exports = EmailsInput;

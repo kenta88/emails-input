@@ -3,7 +3,7 @@ class EmailsInputClass {
   constructor(id: string) {
     this.id = id;
   }
-  greet() {
+  greet(): void {
     console.log("Hello, " + this.id);
   }
 }
