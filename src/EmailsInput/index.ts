@@ -6,6 +6,7 @@ class EmailsInputClass {
   readonly element: HTMLElement | null;
   private inputComponent: InputComponent;
   private tagsHanlder: Tags;
+  private emails: string[] = [];
 
   constructor(id: string) {
     this.onEmailSubmitHandler = this.onEmailSubmitHandler.bind(this);
@@ -28,21 +29,35 @@ class EmailsInputClass {
     }
   }
 
-  onEmailSubmitHandler(value: string) {
+  private onEmailSubmitHandler(value: string) {
     if (value.includes(",")) {
       value.split(",").forEach(value => {
         const trimmed = value.trim();
         if(trimmed.length) {
           this.tagsHanlder.add(trimmed);
+          this.emails.push(trimmed);
         }
       });
     } else {
       this.tagsHanlder.add(value);
+      this.emails.push(value);
     }
   }
 
-  onEmailRemoveHandler() {
+  private onEmailRemoveHandler() {
     this.tagsHanlder.removeLast();
+    this.emails.pop();
+  }
+
+  public addRandomEmails() {
+    ['ivan@mail.ru', 'max@mail.ru'].forEach(value => {
+      this.tagsHanlder.add(value);
+      this.emails.push(value);
+    });
+  }
+
+  public getEmailsCount() {
+    alert(this.emails.length);
   }
 }
 

@@ -3,6 +3,8 @@
   min-height: 90px;
   background: white;
   border: 1px solid #C3C2CF;
+  max-height: 500px;
+  overflow-y: scroll;
 
   .emails-input__tags {
     display: inline-block;
