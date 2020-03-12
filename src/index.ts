@@ -1,5 +1,4 @@
-import './index.scss';
+require('./index.scss');
+const EmailsInput = require('./EmailsInput');
 
-export const init:any = () => {
-  alert('JS IS RUNNING');
-};
+module.exports = EmailsInput;

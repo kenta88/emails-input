@@ -10,7 +10,7 @@ module.exports = {
   },
   output: {
     publicPath: "/",
-    libraryTarget: 'var',
+    libraryTarget: 'window',
     library: 'EmailsInput',
     filename: "[name].dev.js"
   },
@@ -62,5 +62,8 @@ module.exports = {
         ]
       }
     ]
+  },
+  resolve: {
+    extensions: ["*", ".js", ".ts"]
   }
 };

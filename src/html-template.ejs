@@ -19,13 +19,14 @@
 </head>
 <body>
 <div class="container">
-    <div class="emails-input"></div>
+    <div id="emails-input-1"></div>
 </div>
 <script src="/emails-input.<%= commitHash %>.js" charset="utf-8" ></script>
 
 <script>
   window.onload = function () {
-    EmailsInput.init();
+    var emailInput1 = new EmailsInput("emails-input-1");
+    emailInput1.greet();
   };
 </script>
 </body>
