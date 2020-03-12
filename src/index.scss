@@ -1,5 +1,25 @@
 .emails-input {
   width: 100%;
-  height: 90px;
-  background: green;
+  min-height: 90px;
+  background: white;
+  border: 1px solid #C3C2CF;
+
+  .emails-input__tags {
+    display: inline-block;
+  }
+
+  .emails-input__tag {
+    display: inline;
+  }
+
+  .emails-input__text-input {
+    font-family: inherit;
+    font-size: inherit;
+    display: inline;
+    max-width: 99%;
+    width: auto;
+    border:none;
+    min-width:10px;
+    outline: none;
+  }
 }

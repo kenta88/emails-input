@@ -14,19 +14,20 @@
         .container {
             margin:auto;
             max-width: 800px;
+            padding: 24px;
+            background: #F8F8F7;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div id="emails-input-1"></div>
+    <div id="emails-input-1" class="emails-input"></div>
 </div>
 <script src="/emails-input.<%= commitHash %>.js" charset="utf-8" ></script>
 
 <script>
   window.onload = function () {
     var emailInput1 = new EmailsInput("emails-input-1");
-    emailInput1.greet();
   };
 </script>
 </body>
