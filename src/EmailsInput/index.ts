@@ -24,7 +24,7 @@ class InputComponent {
     this.input = document.createElement("INPUT") as HTMLInputElement;
     this.input.setAttribute("type", "text");
     this.input.setAttribute("size", "");
-    this.input.setAttribute("placeholder", "Insert your tag");
+    this.input.setAttribute("placeholder", "add more people...");
     this.input.className = "emails-input__text-input";
 
     this.input.addEventListener("input", this.onInput, false);
@@ -43,9 +43,9 @@ class InputComponent {
 
   private onKeyDown(e: KeyboardEvent): void {
     if (e.target instanceof HTMLInputElement) {
-      if (['Enter', ','].includes(e.key)) {
+      if (["Enter", ","].includes(e.key)) {
         e.preventDefault();
-        if(this.value.length) {
+        if (this.value.length) {
           this.submit();
         }
       }
@@ -56,13 +56,13 @@ class InputComponent {
   }
 
   private onBlur(e: Event): void {
-    if(this.value.length) {
+    if (this.value.length) {
       this.submit();
     }
   }
 
   private submit() {
-    this.onSubmitCallback(this.value);
+    this.onSubmitCallback(this.value.trim());
     this.input.value = "";
     this.value = "";
     this.input.setAttribute("size", "");
@@ -71,14 +71,9 @@ class InputComponent {
 
 class TagsContainer {
   private parentElement: HTMLElement;
-  private container: HTMLElement;
 
   constructor(parentElement: HTMLElement) {
     this.parentElement = parentElement;
-    this.container = document.createElement("DIV") as HTMLDivElement;
-    this.container.className = "emails-input__tags";
-
-    this.parentElement.appendChild(this.container);
   }
 
   public add(value: string) {
@@ -133,7 +128,13 @@ class EmailsInputClass {
   }
 
   onEmailSubmitHandler(value: string) {
-    this.tagsContainer.add(value);
+    if (value.includes(",")) {
+      value.split(",").forEach((value) => {
+        this.tagsContainer.add(value.trim());
+      });
+    } else {
+      this.tagsContainer.add(value);
+    }
   }
 
   onEmailRemoveHandler() {
