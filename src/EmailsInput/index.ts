@@ -11,12 +11,16 @@ class EmailsInputClass {
   constructor(id: string) {
     this.onEmailSubmitHandler = this.onEmailSubmitHandler.bind(this);
     this.onEmailRemoveHandler = this.onEmailRemoveHandler.bind(this);
+    this.onEmailRemoveIndexHandler = this.onEmailRemoveIndexHandler.bind(this);
+
     this.id = id;
     this.element = document.getElementById(id);
 
     if (!!this.element) {
-      // append tag container
-      this.tagsHanlder = new TagsClass(this.element);
+      this.tagsHanlder = new TagsClass(
+        this.element,
+        this.onEmailRemoveIndexHandler
+      );
       // append the input html element
       this.inputComponent = new InputComponentClass(
         this.id,
@@ -29,34 +33,38 @@ class EmailsInputClass {
     }
   }
 
-  private onEmailSubmitHandler(value: string) {
+  private onEmailSubmitHandler(value: string): void {
     if (value.includes(",")) {
       value.split(",").forEach(value => {
         const trimmed = value.trim();
-        if(trimmed.length) {
-          this.tagsHanlder.add(trimmed);
+        if (trimmed.length && !this.emails.includes(trimmed)) {
           this.emails.push(trimmed);
+          this.tagsHanlder.add(trimmed);
         }
       });
-    } else {
-      this.tagsHanlder.add(value);
+    } else if (!this.emails.includes(value)) {
       this.emails.push(value);
+      this.tagsHanlder.add(value);
     }
   }
 
-  private onEmailRemoveHandler() {
+  private onEmailRemoveHandler(): void {
     this.tagsHanlder.removeLast();
     this.emails.pop();
   }
 
-  public addRandomEmails() {
-    ['ivan@mail.ru', 'max@mail.ru'].forEach(value => {
-      this.tagsHanlder.add(value);
+  private onEmailRemoveIndexHandler(value: string): void {
+    this.emails = this.emails.filter(email => email !== value);
+  }
+
+  public addRandomEmails(): void {
+    ["ivan@mail.ru", "max@mail.ru"].forEach(value => {
       this.emails.push(value);
+      this.tagsHanlder.add(value);
     });
   }
 
-  public getEmailsCount() {
+  public getEmailsCount(): void {
     alert(this.emails.length);
   }
 }

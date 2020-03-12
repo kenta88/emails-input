@@ -3,26 +3,66 @@
   min-height: 90px;
   background: white;
   border: 1px solid #C3C2CF;
+  border-radius: 4px;
   max-height: 500px;
-  overflow-y: scroll;
-
-  .emails-input__tags {
-    display: inline-block;
-  }
+  overflow-y: auto;
+  padding: 8px;
+  box-sizing: border-box;
 
   .emails-input__tag {
     display: inline-block;
-    margin-right:6px;
+    margin-right:8px;
+    background: rgba(102, 153, 255, 0.2);
+    border-radius: 100px;
+    padding:0px 10px;
+    font-size: 14px;
+    color: #050038;
+    margin-bottom: 4px;
+    height: 24px;
+    vertical-align: middle;
+
+    &.emails-input__tag--invalid {
+      color: red;
+    }
+
+    .emails-input__email-container {
+      vertical-align: middle;
+      display: inline-block;
+      max-width: 560px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 24px;
+    }
+    button {
+      margin-left:6px;
+      display: inline-block;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding:0 2px;
+      line-height: 24px;
+      img {
+        vertical-align: middle;
+        pointer-events: none;
+      }
+    }
   }
 
   .emails-input__text-input {
+    font-size: 14px;
+    padding:0;
     font-family: inherit;
-    font-size: inherit;
-    display: inline;
-    max-width: 99%;
+    display: inline-block;
+    max-width: 100%;
     width: auto;
     border:none;
     min-width:10px;
     outline: none;
+    text-align: left;
+    overflow: visible;
+    line-height: 24px;
+    vertical-align: top;
+    min-width: 134px;
   }
 }

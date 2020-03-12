@@ -2,7 +2,7 @@ class InputComponent {
   readonly id: string;
   private parentElement: HTMLElement;
   readonly input: HTMLInputElement;
-  private value: string = "";
+  private value = "";
   onSubmitCallback: (value: string) => void;
   onRemoveCallback: () => void;
 
@@ -37,7 +37,7 @@ class InputComponent {
   private onInput(e: Event): void {
     if (e.target instanceof HTMLInputElement) {
       this.value = e.target.value;
-      this.input.setAttribute("size", `${this.value.length}`);
+      this.input.setAttribute("size", `${this.value.length + 1}`);
     }
   }
 
@@ -55,13 +55,13 @@ class InputComponent {
     }
   }
 
-  private onBlur(e: Event): void {
+  private onBlur(): void {
     if (this.value.length) {
       this.submit();
     }
   }
 
-  private submit() {
+  private submit(): void {
     this.onSubmitCallback(this.value.trim());
     this.input.value = "";
     this.value = "";
