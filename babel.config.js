@@ -1,3 +1,5 @@
+
+
 module.exports = api => {
   api.cache(true);
   return {
@@ -5,6 +7,11 @@ module.exports = api => {
       "@babel/preset-typescript",
       [
         "@babel/preset-env",
+        {
+          targets: {
+            ie: 11,
+          },
+        }
       ]
     ],
     plugins: ["@babel/plugin-proposal-class-properties"],

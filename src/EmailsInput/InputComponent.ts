@@ -23,7 +23,7 @@ class InputComponent {
 
     this.input = document.createElement("INPUT") as HTMLInputElement;
     this.input.setAttribute("type", "text");
-    this.input.setAttribute("size", "");
+    // this.input.setAttribute("size", "");
     this.input.setAttribute("placeholder", "add more people...");
     this.input.className = "emails-input__text-input";
 
@@ -37,7 +37,8 @@ class InputComponent {
   private onInput(e: Event): void {
     if (e.target instanceof HTMLInputElement) {
       this.value = e.target.value;
-      this.input.setAttribute("size", `${this.value.length + 1}`);
+      // this.input.setAttribute("size", `${this.value.length + 6}`);
+      this.input.style.width = `${this.value.length * 8}px`;
     }
   }
 
@@ -65,7 +66,7 @@ class InputComponent {
     this.onSubmitCallback(this.value.trim());
     this.input.value = "";
     this.value = "";
-    this.input.setAttribute("size", "");
+    // this.input.setAttribute("size", "");
   }
 }
 

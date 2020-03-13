@@ -30,7 +30,7 @@ class Tags {
     emailContainer.innerText = value;
     emailContainer.className = "emails-input__email-container";
 
-    tagElement.append(emailContainer);
+    tagElement.appendChild(emailContainer);
 
     const removeButton = document.createElement("BUTTON") as HTMLButtonElement;
     removeButton.setAttribute("data-email", value);
@@ -39,8 +39,8 @@ class Tags {
     const icon = document.createElement("IMG") as HTMLImageElement;
     icon.setAttribute("src", RemoveIcon.default);
 
-    removeButton.append(icon);
-    tagElement.append(removeButton);
+    removeButton.appendChild(icon);
+    tagElement.appendChild(removeButton);
 
     const tags = this.parentElement.getElementsByClassName("emails-input__tag");
     const lastTag = tags[tags.length - 1];
@@ -48,7 +48,10 @@ class Tags {
     if (!!lastTag) {
       lastTag.parentNode?.insertBefore(tagElement, lastTag.nextSibling);
     } else {
-      this.parentElement.prepend(tagElement);
+      this.parentElement.insertBefore(
+        tagElement,
+        this.parentElement.childNodes[0]
+      );
     }
     this.index++;
   }
@@ -59,6 +62,11 @@ class Tags {
     if (!!lastTag) {
       this.parentElement.removeChild(lastTag);
     }
+  }
+
+  public removeAll(): void {
+    const tags = this.parentElement.querySelectorAll(".emails-input__tag");
+    tags.forEach(tag => tag.remove());
   }
 
   private onRemove(e: MouseEvent): void {
