@@ -5,21 +5,21 @@ const validEmailRegexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|
 class Tags {
   private parentElement: HTMLElement;
   private index = 0;
-  onRemoveCallback: (value: string) => void;
+  onRemoveCallback: (emailId: string) => void;
 
   constructor(
     parentElement: HTMLElement,
-    onRemoveCallback: (value: string) => void
+    onRemoveCallback: (emailId: string) => void
   ) {
     this.parentElement = parentElement;
     this.onRemoveCallback = onRemoveCallback;
     this.onRemove = this.onRemove.bind(this);
   }
 
-  public add(value: string): void {
-    const isEmailValid = validEmailRegexp.test(value);
+  public add(emailObj: EmailObj): void {
+    const isEmailValid = validEmailRegexp.test(emailObj.email);
     const tagElement = document.createElement("SPAN") as HTMLSpanElement;
-    tagElement.setAttribute("data-email", value);
+    tagElement.setAttribute("data-id", emailObj.id);
     tagElement.classList.add("emails-input__tag");
 
     if (!isEmailValid) {
@@ -27,13 +27,13 @@ class Tags {
     }
 
     const emailContainer = document.createElement("SPAN") as HTMLSpanElement;
-    emailContainer.innerText = value;
+    emailContainer.innerText = emailObj.email;
     emailContainer.className = "emails-input__email-container";
 
     tagElement.appendChild(emailContainer);
 
     const removeButton = document.createElement("BUTTON") as HTMLButtonElement;
-    removeButton.setAttribute("data-email", value);
+    removeButton.setAttribute("data-id", emailObj.id);
     removeButton.addEventListener("click", this.onRemove, false);
 
     const icon = document.createElement("IMG") as HTMLImageElement;
@@ -71,13 +71,13 @@ class Tags {
 
   private onRemove(e: MouseEvent): void {
     if (e.target instanceof HTMLButtonElement) {
-      const email = e.target.dataset.email;
-      if (!!email) {
+      const emailId = e.target.dataset.id;
+      if (!!emailId) {
         const span = this.parentElement.querySelectorAll(
-          `span[data-email="${email}"]`
+          `span[data-id="${emailId}"]`
         )[0];
         this.parentElement.removeChild(span);
-        this.onRemoveCallback(email);
+        this.onRemoveCallback(emailId);
       }
     }
   }
