@@ -22,6 +22,10 @@ class EmailsInputClass {
     this.id = id;
     this.element = document.getElementById(id);
 
+    this.element?.addEventListener("click", () => {
+      this.inputComponent.input.focus();
+    }, false);
+
     if (!!this.element) {
       this.tagsHanlder = new TagsClass(
         this.element,

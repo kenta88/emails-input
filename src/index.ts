@@ -1,6 +1,6 @@
 require("core-js/stable");
 require("regenerator-runtime/runtime");
-require("./index.scss");
+require("./style/index.scss");
 
 const EmailsInput = require("./EmailsInput");
 

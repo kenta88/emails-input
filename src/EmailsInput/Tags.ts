@@ -19,6 +19,11 @@ class Tags {
   public add(emailObj: EmailObj): void {
     const isEmailValid = validEmailRegexp.test(emailObj.email);
     const tagElement = document.createElement("SPAN") as HTMLSpanElement;
+
+    tagElement.addEventListener("click", (e: MouseEvent) => {
+      e.stopPropagation();
+    }, false);
+
     tagElement.setAttribute("data-id", emailObj.id);
     tagElement.classList.add("emails-input__tag");
 
@@ -66,7 +71,7 @@ class Tags {
 
   public removeAll(): void {
     const tags = this.parentElement.querySelectorAll(".emails-input__tag");
-    tags.forEach(tag => tag.remove());
+    tags.forEach(tag => this.parentElement.removeChild(tag));
   }
 
   private onRemove(e: MouseEvent): void {
