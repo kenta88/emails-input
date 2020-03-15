@@ -7,8 +7,9 @@
     "test": "jest",
     "commit": "git-cz",
     "build": "webpack --config webpack.config.js",
+    "build:local": "ENV='LOCAL' webpack --config webpack.config.js",
     "start:dev": "webpack-dev-server --config webpack.dev.config.js --open",
-    "start:build": "http-server ./build",
+    "start:build": "http-server ./docs",
     "lint": "eslint src --ext ts",
     "lint:fix": "eslint src --ext ts --fix"
   },
