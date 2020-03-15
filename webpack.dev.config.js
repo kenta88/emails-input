@@ -22,6 +22,7 @@ module.exports = {
       inject: false,
       templateParameters: {
         commitHash: 'dev',
+        staticBaseUrl: '',
       },
       template: path.join(__dirname, "./src/html-template.ejs")
     }),
