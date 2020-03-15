@@ -52,7 +52,7 @@ module.exports = {
       inject: false,
       templateParameters: {
         commitHash,
-        staticBaseUrl: process.env.ENV !== 'LOCAL' ? '/docs' : '',
+        staticBaseUrl: process.env.ENV !== 'LOCAL' ? '/emails-input/docs' : '',
       },
       template: path.join(__dirname, "./src/html-template.ejs")
     })
