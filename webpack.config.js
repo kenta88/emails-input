@@ -13,7 +13,7 @@ module.exports = {
     "emails-input": "./src/index.ts"
   },
   output: {
-    path: __dirname + "/build",
+    path: __dirname + "/docs",
     libraryTarget: 'var',
     library: 'EmailsInput',
     filename: `[name].${commitHash}.js`
