@@ -1,5 +1,3 @@
-const webpack = require("webpack");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
@@ -20,9 +18,6 @@ module.exports = {
     historyApiFallback: true,
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: "[name].dev.css"
-    }),
     new HtmlWebpackPlugin({
       inject: false,
       templateParameters: {
@@ -42,20 +37,14 @@ module.exports = {
         test: /\.(svg|png|jpe?g|gif)$/i,
         use: [
           {
-            loader: "file-loader"
+            loader: "url-loader",
           }
         ]
       },
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: "/",
-              hmr: true
-            }
-          },
+          "style-loader",
           "css-loader",
           "postcss-loader",
           "sass-loader"
