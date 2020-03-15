@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmailsInputClass should render 1`] = `
+"<head></head>
+  <body>
+    <div id=\\"emails-input-1\\" class=\\"emails-input\\"><input type=\\"text\\" placeholder=\\"add more people...\\" class=\\"emails-input__text-input\\"></div>
+  
+
+</body>"
+`;
